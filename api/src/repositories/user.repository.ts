@@ -4,7 +4,7 @@ import UserEntity from 'src/entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 
 @Injectable()
-export class UserRepository extends Repository<UserEntity> {
+export default class UserRepository extends Repository<UserEntity> {
   constructor(
     private dataSource: DataSource,
   ) {
@@ -15,7 +15,6 @@ export class UserRepository extends Repository<UserEntity> {
   }
   
   async index(): Promise<UserEntity[]> {
-    console.log('>>>>>>>> TESTE')
     return await this.find();
   }
   

@@ -4,8 +4,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import Controllers from './controllers';
 import Models from './entities';
-import { UserRepository } from './repositories/user.repository';
-import UserService from './services/user.service';
+import Repositories from './repositories';
+import Services from './services';
 
 @Module({
   imports: [
@@ -30,8 +30,11 @@ import UserService from './services/user.service';
     }),
     TypeOrmModule.forFeature(Models),
   ],
-  exports: [UserService],
-  providers: [UserRepository, UserService],
+  exports: [...Services],
+  providers: [
+    ...Repositories, 
+    ...Services
+  ],
   controllers: Controllers,
 })
 export class AppModule {}
