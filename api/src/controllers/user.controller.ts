@@ -1,0 +1,33 @@
+import { Body, Controller, Delete, Get, Post, Put, Req, Res } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserDto } from 'src/dtos/user.dto';
+import UserEntity from 'src/entities/user.entity';
+import UserService from 'src/services/user.service';
+import { Repository } from 'typeorm';
+
+@ApiTags('users')
+@Controller('/users')
+export default class UserController {
+  constructor(
+    private readonly userService: UserService,
+  ) {}
+
+  @Get()
+  async index(): Promise<{data: UserEntity[]}> {
+    const list = await this.userService.index();
+    return { data: list };
+  }
+
+  @Get(':id')
+  async show(): Promise<any> {}
+  @Post()
+  async store(@Body() user: UserDto): Promise<any> {
+    // const createdUser = await this.model.save(user);
+    // return { data: createdUser }; 
+  }
+  @Put(':id')
+  async update(): Promise<any> {}
+  @Delete(':id')
+  async destroy(): Promise<any> {}
+}
