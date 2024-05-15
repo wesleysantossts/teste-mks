@@ -1,5 +1,10 @@
-import UserService from "./user.service";
+import AuthService from './auth.service';
+import BcryptService from './bcrypt.service';
+import UserService from './user.service';
+
 
 export default [
-  UserService
+  // AuthService,
+  UserService,
+  // BcryptService
 ]
